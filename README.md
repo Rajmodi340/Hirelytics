@@ -41,29 +41,32 @@ Hirelytics is a full-stack, AI-powered preparation platform designed to help job
 - **Zod & Zod-to-Json-Schema**: Strong validation and typing for structured JSON output from Gemini.
 
 
-```mermaid
-flowchart TD
-   subgraph Frontend["Frontend: React + Vite"]
-        A["User Input: Resume PDF + Job Description + Self-Description"] --> B["Dashboard / History Page"]
-        B --> C["Tailored PDF Download"]
-    end
+### Architecture Overview
 
-     subgraph Backend["Backend: Express Node.js"]
-        D["Auth Middleware / JWT Verification"] --> E["PDF-Parse: Extract Resume Text"]
-        E --> F["Gemini API: Structured JSON Gen"]
-        E --> G["Gemini API: HTML Resume Gen"]
-        G --> H["Puppeteer: HTML to A4 PDF"]
-    end
+**Frontend (React + Vite):**
+- User Input: Resume PDF + Job Description + Self-Description
+- Dashboard / History Page
+- Tailored PDF Download
 
-    subgraph Database["Database: MongoDB"]
-        I[("User Collection")]
-        J[("InterviewReport Collection")]
-        K[("Token Blacklist")]
-    end
-  A -->|POST /api/interview| D
-    F -->|Store Report| J
-    J -->|Fetch Reports| B
-    H -->|Download Stream| C
+**Backend (Express Node.js):**
+- Auth Middleware / JWT Verification
+- PDF-Parse: Extract Resume Text
+- Gemini API: Structured JSON Generation
+- Gemini API: HTML Resume Generation
+- Puppeteer: HTML to A4 PDF
+
+**Database (MongoDB):**
+- User Collection
+- InterviewReport Collection
+- Token Blacklist
+
+**Data Flow:**
+- User Input → POST /api/interview → Auth Middleware
+- PDF Extraction → Gemini API (JSON & HTML)
+- Generated Reports → Store in MongoDB
+- Fetch Reports → Dashboard Display
+- Puppeteer Conversion → PDF Download Stream
+
 ---
 
 ## 📁 Repository Structure
