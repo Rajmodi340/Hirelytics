@@ -43,30 +43,27 @@ Hirelytics is a full-stack, AI-powered preparation platform designed to help job
 
 ```mermaid
 flowchart TD
-    subgraph Frontend (React + Vite)
-        A[User Input: Resume PDF + Job Description + Self-Description] --> B[Dashboard / History Page]
-        B --> C[Tailored PDF Download]
+   subgraph Frontend["Frontend: React + Vite"]
+        A["User Input: Resume PDF + Job Description + Self-Description"] --> B["Dashboard / History Page"]
+        B --> C["Tailored PDF Download"]
     end
 
-    subgraph Backend (Express Node.js)
-        D[Auth Middleware / JWT Verification] --> E[PDF-Parse: Extract Resume Text]
-        E --> F[Gemini API: Structured JSON Gen]
-        E --> G[Gemini API: HTML Resume Gen]
-        G --> H[Puppeteer: HTML to A4 PDF]
+     subgraph Backend["Backend: Express Node.js"]
+        D["Auth Middleware / JWT Verification"] --> E["PDF-Parse: Extract Resume Text"]
+        E --> F["Gemini API: Structured JSON Gen"]
+        E --> G["Gemini API: HTML Resume Gen"]
+        G --> H["Puppeteer: HTML to A4 PDF"]
     end
 
-    subgraph Database (MongoDB)
-        I[(User Collection)]
-        J[(InterviewReport Collection)]
-        K[(Token Blacklist)]
+    subgraph Database["Database: MongoDB"]
+        I[("User Collection")]
+        J[("InterviewReport Collection")]
+        K[("Token Blacklist")]
     end
-
-    A -- "POST /api/interview" --> D
-    F -- "Store Report" --> J
-    J -- "Fetch Reports" --> B
-    H -- "Download Stream" --> C
-```
-
+  A -->|POST /api/interview| D
+    F -->|Store Report| J
+    J -->|Fetch Reports| B
+    H -->|Download Stream| C
 ---
 
 ## 📁 Repository Structure
