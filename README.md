@@ -40,9 +40,6 @@ Hirelytics is a full-stack, AI-powered preparation platform designed to help job
 - **PDF-Parse**: Extracts text from user-uploaded PDF resumes.
 - **Zod & Zod-to-Json-Schema**: Strong validation and typing for structured JSON output from Gemini.
 
----
-
-## 📐 System Architecture & Workflow
 
 ```mermaid
 flowchart TD
