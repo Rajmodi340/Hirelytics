@@ -8,7 +8,7 @@ app.use(express.json())
 app.use(cookieParser())
 
 const allowedOrigins = [
-    "http://localhost:5173",
+    "https://hirelytics-1-2g14.onrender.com",
 ]
 
 app.use(cors({
